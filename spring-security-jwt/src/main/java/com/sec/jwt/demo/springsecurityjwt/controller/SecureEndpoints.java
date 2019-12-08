@@ -45,7 +45,7 @@ public class SecureEndpoints {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
         }catch(BadCredentialsException e){
-            System.out.println("Username password mismatch");
+            throw new BadCredentialsException("Username password mismatch");
         }
 
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
